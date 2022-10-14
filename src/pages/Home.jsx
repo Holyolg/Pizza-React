@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
 
 import Categories from "../components/Categories";
-import Sorting from "../components/Sort";
+import Sorting, { list } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../Pagination/index.jsx";
 
 import { SearchContext } from "../App";
-import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
+import {
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from "../redux/slices/filterSlice";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const isSearchs = React.useRef(false);
+  const isMounted = React.useRef(false);
   // хуки redux
   const dispatch = useDispatch();
   // с помощью деструктуризации вытаскиваем categoryId и sort, навешивая на них filter
@@ -30,7 +39,8 @@ const Home = () => {
   const onchangePage = (number) => {
     dispatch(setCurrentPage(number));
   };
-  React.useEffect(() => {
+
+  const axiosPizzas = () => {
     setIsLoading(true);
     // консты для axios
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
@@ -46,9 +56,44 @@ const Home = () => {
         setItems(res.data);
         setIsLoading(false);
       });
+  };
 
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      );
+      isSearchs.current = true;
+    }
+  }, []);
+
+  React.useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (!isSearchs.current) {
+      axiosPizzas();
+    }
+    isSearchs.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const querryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+      navigate(`?${querryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sort.sortProperty, currentPage]);
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
