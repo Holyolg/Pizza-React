@@ -57,7 +57,20 @@ const Home = () => {
         setIsLoading(false);
       });
   };
+  // Если изменили параметры и был первый рендер:
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const querryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+      navigate(`?${querryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sort.sortProperty, currentPage]);
 
+  // Если был первый рендер, то проверяет URL-параметры и сохраняет в редуксе
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
@@ -74,6 +87,7 @@ const Home = () => {
     }
   }, []);
 
+  // Если был первый рендер, то запрашиваем пипцы
   React.useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -82,18 +96,6 @@ const Home = () => {
     }
     isSearchs.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
-
-  React.useEffect(() => {
-    if (isMounted.current) {
-      const querryString = qs.stringify({
-        sortProperty: sort.sortProperty,
-        categoryId,
-        currentPage,
-      });
-      navigate(`?${querryString}`);
-    }
-    isMounted.current = true;
-  }, [categoryId, sort.sortProperty, currentPage]);
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
