@@ -16,6 +16,7 @@ import {
   setCurrentPage,
   setFilters,
 } from "../redux/slices/filterSlice";
+import { setItems } from "../redux/slices/pizzasSlice";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ const Home = () => {
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter
   );
+  const items = useSelector((state) => state.pizza.items);
 
   const { searchValue } = React.useContext(SearchContext);
-  const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const onChangeCategory = (id) => {
@@ -40,7 +41,7 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  const axiosPizzas = () => {
+  const axiosPizzas = async () => {
     setIsLoading(true);
     // консты для axios
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
@@ -48,15 +49,19 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    axios
-      .get(
+    try {
+      const { data } = await axios.get(
         `https://6346ff4404a6d457579e4887.mockapi.io/PizzaItem?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      });
+      );
+      dispatch(setItems(data));
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      alert("Ошибка при получении пипц");
+      console.log(error, "axios error: ");
+    }
   };
+
   // Если изменили параметры и был первый рендер:
   React.useEffect(() => {
     if (isMounted.current) {
