@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectSort,
-  setSort,
-  sortPropertyEnum,
-} from "../redux/slices/filterSlice";
+import { selectSort } from "../redux/filter/selectors";
+import { setSort } from "../redux/filter/slice";
+import { sortPropertyEnum } from "../redux/filter/types";
 
 type SortList = {
   name: string;
@@ -25,8 +23,7 @@ export const list: SortList[] = [
   },
   { name: "алфавиту (по убыванию)", sortProperty: sortPropertyEnum.TITLE_DESC },
 ];
-
-export function Sorting() {
+export const Sorting: React.FC = () => {
   const dispatch = useDispatch();
   const sort = useSelector(selectSort);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -86,6 +83,6 @@ export function Sorting() {
       )}
     </div>
   );
-}
+};
 
 export default Sorting;

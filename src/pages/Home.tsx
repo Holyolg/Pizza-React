@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import qs from "qs";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Categories from "../components/Categories";
 import Sorting, { list } from "../components/Sort";
@@ -9,15 +9,15 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../Pagination/index";
 
+import { useAppDispatch } from "../redux/store";
+import { selectFilter } from "../redux/filter/selectors";
 import {
-  FilterSliceState,
-  selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
-} from "../redux/slices/filterSlice";
-import { fetchPizzas, SearchPizzaParams } from "../redux/slices/pizzasSlice";
-import { useAppDispatch } from "../redux/store";
+} from "../redux/filter/slice";
+import { fetchPizzas } from "../redux/pizza/asyncActions";
+import { SearchPizzaParams } from "../redux/pizza/types";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -30,9 +30,9 @@ const Home: React.FC = () => {
     useSelector(selectFilter);
   const { items, status } = useSelector((state: any) => state.pizza);
 
-  const onChangeCategory = (id: number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
   const onchangePage = (page: number) => {
     dispatch(setCurrentPage(page));
@@ -101,7 +101,10 @@ const Home: React.FC = () => {
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
   ));
-  const pizzas = items.map((value: any) => <PizzaBlock {...value} />);
+
+  const pizzas = items.map((value: any) => (
+    <PizzaBlock key={value.id} {...value} />
+  ));
   return (
     <div className="container">
       <div className="content__top">
