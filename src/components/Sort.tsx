@@ -1,31 +1,49 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSort } from "../redux/slices/filterSlice";
+import {
+  selectSort,
+  setSort,
+  sortPropertyEnum,
+} from "../redux/slices/filterSlice";
 
-export const list = [
-  { name: "популярности", sortProperty: "rating" },
-  { name: "популярности (по возрастанию)", sortProperty: "-rating" },
-  { name: "ценe", sortProperty: "price" },
-  { name: "цене (по возрастанию)", sortProperty: "-price" },
-  { name: "алфавиту (по возрастанию)", sortProperty: "title" },
-  { name: "алфавиту (по убыванию)", sortProperty: "-title" },
+type SortList = {
+  name: string;
+  sortProperty: sortPropertyEnum;
+};
+
+export const list: SortList[] = [
+  { name: "популярности", sortProperty: sortPropertyEnum.RATING_DESC },
+  {
+    name: "популярности (по возрастанию)",
+    sortProperty: sortPropertyEnum.RATING_ASC,
+  },
+  { name: "ценe", sortProperty: sortPropertyEnum.PRICE_DESC },
+  { name: "цене (по возрастанию)", sortProperty: sortPropertyEnum.PRICE_ASC },
+  {
+    name: "алфавиту (по возрастанию)",
+    sortProperty: sortPropertyEnum.TITLE_ASC,
+  },
+  { name: "алфавиту (по убыванию)", sortProperty: sortPropertyEnum.TITLE_DESC },
 ];
 
 export function Sorting() {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.sort);
-  const sortRef = useRef();
+  const sort = useSelector(selectSort);
+  const sortRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);
 
-  const onClickList = (obj) => {
+  const onClickList = (obj: SortList) => {
     dispatch(setSort(obj));
     setOpen(false);
   };
 
   React.useEffect(() => {
-    const handleClick = (event) => {
-      if (!event.path.includes(sortRef.current)) {
+    const handleClick = (event: MouseEvent) => {
+      const _event = event as MouseEvent & {
+        path: Node[];
+      };
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpen(false);
       }
     };

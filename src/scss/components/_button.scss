@@ -54,6 +54,7 @@
 
 		&:hover,
 		&:active {
+			color: lighten($color: $black, $amount: 10);
 			background-color: lighten($color: $black, $amount: 10);
 		}
 	}
@@ -163,6 +164,7 @@
 
 
 
+
 		svg {
 			margin-right: 10px;
 			margin-bottom: 1px;
@@ -182,4 +184,8 @@
 			}
 		}
 	}
+}
+
+.go-back-btn:hover {
+	color: $gray-line
 }

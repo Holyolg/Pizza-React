@@ -1,16 +1,17 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
-import { clearItems } from "../redux/slices/cartSlice";
+import { clearItems, selectCart } from "../redux/slices/cartSlice";
 import CartEmpty from "../components/CartEmpty";
 
-const Cart = ({ id }) => {
-  console.log(id);
+const Cart: React.FC = () => {
   const dispath = useDispatch();
-  const { totalPrice, items } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector(selectCart);
 
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const totalCount = items.reduce(
+    (sum: number, item: any) => sum + item.count,
+    0
+  );
 
   const onClickClear = () => {
     dispath(clearItems());
@@ -27,7 +28,7 @@ const Cart = ({ id }) => {
           <h2 className="content__title">
             <svg
               width="18"
-              heilght="18"
+              height="18"
               viewBox="0 0 18 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +90,7 @@ const Cart = ({ id }) => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((item) => (
+          {items.map((item: any) => (
             <CartItem key={item.id} {...item} />
           ))}
         </div>
@@ -103,8 +104,8 @@ const Cart = ({ id }) => {
             </span>
           </div>
           <div className="cart__bottom-buttons">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="button button--outline button--add go-back-btn">
               <svg
                 width="8"
@@ -120,8 +121,8 @@ const Cart = ({ id }) => {
                   strokeLinejoin="round"></path>
               </svg>
 
-              <Link to="/">Вернуться назад</Link>
-            </a>
+              <span>Вернуться назад</span>
+            </Link>
             <div className="button pay-btn">
               <span>Оплатить сейчас</span>
             </div>

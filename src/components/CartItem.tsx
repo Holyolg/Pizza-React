@@ -1,20 +1,46 @@
+import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 
 import { useDispatch } from "react-redux";
-import { addItems, minusItems, clearItems } from "../redux/slices/cartSlice";
+import {
+  addItems,
+  minusItems,
+  clearItems,
+  CartItem,
+} from "../redux/slices/cartSlice";
 
-const CartItem = ({ id, title, type, price, count, imageUrl, sizes }) => {
+type CartItemProps = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  count: number;
+  imageUrl: string;
+  sizes: number;
+};
+
+const CartItemBlock: React.FC<CartItemProps> = ({
+  id,
+  title,
+  type,
+  price,
+  count,
+  imageUrl,
+  sizes,
+}) => {
   const dispath = useDispatch();
 
   const onClickPlus = () => {
     dispath(
       addItems({
         id,
-      })
+      } as CartItem)
     );
   };
   const onClickMinus = () => {
-    dispath(minusItems(id));
+    if (count > 0) {
+      dispath(minusItems(id));
+    }
   };
 
   const onClickClear = () => {
@@ -94,4 +120,4 @@ const CartItem = ({ id, title, type, price, count, imageUrl, sizes }) => {
     </div>
   );
 };
-export default CartItem;
+export default CartItemBlock;

@@ -1,7 +1,8 @@
+import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 import ContentLoader from "react-content-loader";
 
-const Skeleton = (props) => (
+const Skeleton: React.FC = (props) => (
   <ContentLoader
     className="pizza-block"
     speed={2}

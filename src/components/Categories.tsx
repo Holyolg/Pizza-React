@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Categories({ value, onChangeCategory }) {
+type CategoriesProps = {
+  value: number;
+  onChangeCategory: (id: number) => void;
+};
+
+const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
   const categorise = [
     "Все",
     "Мясные",
@@ -12,17 +17,17 @@ function Categories({ value, onChangeCategory }) {
   return (
     <div className="categories">
       <ul>
-        {categorise.map((categoryName, i) => (
+        {categorise.map((categoryName, id) => (
           <li
-            key={i}
+            key={id}
             // не уникальный ключ, потому что статичный categorise
-            onClick={() => onChangeCategory(i, 2, 3)}
-            className={value === i ? "active" : ""}>
+            onClick={() => onChangeCategory(id)}
+            className={value === id ? "active" : ""}>
             {categoryName}
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 export default Categories;
