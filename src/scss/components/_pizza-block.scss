@@ -5,6 +5,7 @@
 	margin-bottom: 65px;
 
 
+
 	&-wrapper {
 		display: flex;
 		justify-content: center;
@@ -13,8 +14,15 @@
 
 	&__image {
 		width: 260px;
-		max-width: 100%;
+		max-width: 90%;
+		transition: all 0.2s ease;
 	}
+
+	&__image:hover {
+		transform: translateY(3px);
+	}
+
+
 
 	&__title {
 		font-size: 20px;

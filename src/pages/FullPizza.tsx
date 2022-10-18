@@ -1,13 +1,14 @@
 import React from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import loading from "../assets/img/loading.gif";
 
 const FullPizza: React.FC = () => {
-	const [pizza, setPizza] = React.useState<{
-		imageUrl: string,
-		title: string,
-		price: string
-	}>();
+  const [pizza, setPizza] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: string;
+  }>();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -28,17 +29,40 @@ const FullPizza: React.FC = () => {
 
   if (!pizza) {
     return (
-      <div className="container">
-        <h2>Загрузка...</h2>
+      <div className="loading__container">
+        <img className="loading" src={loading} alt="загрузка..." />
       </div>
     );
   }
 
   return (
     <div className="container">
-      <img src={pizza.imageUrl} alt="pizza" />
-      <h2>{pizza.title}</h2>
-      <h4>{pizza.price} ₽</h4>
+      <div className="full-pizza__block">
+        <img className="full-pizza__image" src={pizza.imageUrl} alt="pizza" />
+        <div className="full-pizza__text">
+          <h2 className="full-pizza__title">{pizza.title}</h2>
+          <h4 className="full-pizza__price">{pizza.price} ₽</h4>
+          <h4 className="full-pizza__about">Состав:{}</h4>
+        </div>
+        <div className="cart__bottom-buttons"></div>
+      </div>
+      <Link to="/" className="button button--outline button--add go-back-btn">
+        <svg
+          width="8"
+          height="14"
+          viewBox="0 0 8 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M7 13L1 6.93015L6.86175 1"
+            stroke="#D3D3D3"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"></path>
+        </svg>
+
+        <span>Вернуться назад</span>
+      </Link>
     </div>
   );
 };

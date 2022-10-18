@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import logoSvg from "../assets/img/pizza-logo.svg";
+import logoSvg from "../assets/img/pizza-logo.png";
 import Search from "./Search/index";
 import { selectCart } from "../redux/cart/selectors";
 
@@ -30,17 +30,17 @@ function Header() {
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="38" src={logoSvg} alt="Pizza logo" />
+            <img width="70" src={logoSvg} alt="Pizza logo" />
             <div className="logo__header-title">
               <h1>Пипца покупатель</h1>
               <p>купи пипцу</p>
             </div>
           </div>
         </Link>
-        {location.pathname !== "/Сart" && <Search />}
+        {location.pathname !== "/cart" && <Search />}
         <div className="header__cart">
-          {location.pathname !== "/Сart" && (
-            <Link to="/Сart" className="button button--cart">
+          {location.pathname !== "/cart" && (
+            <Link to="/cart" className="button button--cart">
               <span>{totalPrice} ₽</span>
               <div className="button__delimiter"></div>
               <svg
