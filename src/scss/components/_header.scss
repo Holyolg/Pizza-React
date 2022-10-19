@@ -35,13 +35,13 @@
 
 
 		img {
-			width: 70px;
+			width: 90px;
+			height: 90px;
 			margin-right: 10px;
 			transition: all 0.2s ease;
 
 			@media (max-width: 1099px) {
 				margin-right: 15px;
-				height: 70px;
 			}
 
 			@media (max-width: 640px) {}
@@ -71,7 +71,10 @@
 
 			@media (max-width: 1099px) {
 				text-align: left;
+			}
 
+			@media (max-width: 410px) {
+				text-align: center;
 			}
 		}
 
@@ -81,7 +84,10 @@
 
 			@media (max-width: 1099px) {
 				text-align: left;
+			}
 
+			@media (max-width: 410px) {
+				text-align: center;
 			}
 		}
 	}

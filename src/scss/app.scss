@@ -397,6 +397,7 @@ body {
 			justify-content: space-between;
 			margin-top: 40px;
 
+
 			@media (max-width:600px) {
 				flex-direction: column-reverse;
 				align-items: center;
@@ -407,7 +408,7 @@ body {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				width: 210px;
+				width: 200px;
 
 				border-color: darken($color: $gray-line, $amount: 10);
 

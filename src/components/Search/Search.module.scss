@@ -16,12 +16,17 @@
 		background-color: $gray-line;
 	}
 
+	@media (max-width: 974px) {
+		width: 200px;
+		max-width: 100%;
+	}
+
 	@media (max-width: 950px) {
 		width: 180px;
 		max-width: 100%;
 	}
 
-	@media (max-width: 800px) {
+	@media (max-width: 821px) {
 		width: 100px;
 		max-width: 100%;
 	}

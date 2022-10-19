@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { useDispatch } from "react-redux";
-import { addItems, clearItems, minusItems } from "../redux/cart/slice";
+import { addItems, minusItems, removeItems } from "../redux/cart/slice";
 import { CartItem } from "../redux/cart/types";
 
 type CartItemProps = {
@@ -30,17 +30,19 @@ const CartItemBlock: React.FC<CartItemProps> = ({
     dispath(
       addItems({
         id,
+        sizes,
+        type,
       } as CartItem)
     );
   };
   const onClickMinus = () => {
     if (count > 0) {
-      dispath(minusItems(id));
+      dispath(minusItems({ id, sizes, type }));
     }
   };
 
-  const onClickClear = () => {
-    dispath(clearItems());
+  const onClickRemove = () => {
+    dispath(removeItems({ id, sizes, type }));
   };
 
   return (
@@ -96,11 +98,11 @@ const CartItemBlock: React.FC<CartItemProps> = ({
         </button>
       </div>
       <div className="cart__item-price">
-        <b>{price * count} ₽</b>
+        <b>{price * count}</b>
       </div>
       <div className="cart__item-remove">
         <div
-          onClick={onClickClear}
+          onClick={onClickRemove}
           className="button button--outline button--circle">
           <svg
             width="10"
