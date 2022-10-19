@@ -46,7 +46,9 @@ const FullPizza: React.FC = () => {
         </div>
         <div className="cart__bottom-buttons"></div>
       </div>
-      <Link to="/" className="button button--outline button--add go-back-btn">
+      <Link
+        to="/PizzaTime"
+        className="button button--outline button--add go-back-btn">
         <svg
           width="8"
           height="14"

@@ -28,7 +28,7 @@ function Header() {
   return (
     <div className="header">
       <div className="container">
-        <Link to="/">
+        <Link to="/PizzaTime">
           <div className="header__logo">
             <img width="70" src={logoSvg} alt="Pizza logo" />
             <div className="logo__header-title">

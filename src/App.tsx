@@ -32,7 +32,7 @@ function App() {
             <MainLayout />
           </Suspense>
         }>
-        <Route path="/" element={<Home />} />
+        <Route path="/PizzaTime" element={<Home />}></Route>
 
         <Route
           path="/cart"
@@ -45,10 +45,10 @@ function App() {
               }>
               <Cart />
             </Suspense>
-          }
-        />
+          }></Route>
+
         <Route
-          path="pizza/:id"
+          path="PizzaTime/pizza/:id"
           element={
             <Suspense
               fallback={
@@ -58,8 +58,7 @@ function App() {
               }>
               <FullPizza />
             </Suspense>
-          }
-        />
+          }></Route>
 
         <Route
           path="*"
@@ -72,8 +71,7 @@ function App() {
               }>
               <NotFound />
             </Suspense>
-          }
-        />
+          }></Route>
       </Route>
     </Routes>
   );

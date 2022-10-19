@@ -14,8 +14,11 @@
 
 	&__image {
 		width: 260px;
-		max-width: 90%;
 		transition: all 0.2s ease;
+
+		@media (max-width: 404px) {
+			max-width: 100%;
+		}
 	}
 
 	&__image:hover {

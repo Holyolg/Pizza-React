@@ -221,8 +221,10 @@ body {
 			flex-direction: column;
 			justify-content: center;
 			width: 40%;
+			margin-left: 25px;
 
 			@media (max-width:600px) {
+				margin-left: 0px;
 				width: 100%;
 				text-align: center;
 				margin-bottom: 2vh;
@@ -439,7 +441,7 @@ body {
 			}
 
 			.pay-btn {
-				font-size: 16px;
+				font-size: 14px;
 				font-weight: 600;
 				width: 210px;
 				padding: 16px;
