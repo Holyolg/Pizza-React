@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/PizzaTime/static/css/main.c06c4be9.css",
+    "main.css": "/PizzaTime/static/css/main.cc4ab154.css",
     "main.js": "/PizzaTime/static/js/main.18c2ba36.js",
     "Cart.js": "/PizzaTime/static/js/Cart.438bd94f.chunk.js",
     "FullPizza.js": "/PizzaTime/static/js/FullPizza.d69d1f52.chunk.js",
@@ -10,7 +10,7 @@
     "static/media/pizza-logo.png": "/PizzaTime/static/media/pizza-logo.b4a3446895be60ea2f01.png",
     "static/media/empty-cart.gif": "/PizzaTime/static/media/empty-cart.162e19711348f3914fe8.gif",
     "index.html": "/PizzaTime/index.html",
-    "main.c06c4be9.css.map": "/PizzaTime/static/css/main.c06c4be9.css.map",
+    "main.cc4ab154.css.map": "/PizzaTime/static/css/main.cc4ab154.css.map",
     "main.18c2ba36.js.map": "/PizzaTime/static/js/main.18c2ba36.js.map",
     "Cart.438bd94f.chunk.js.map": "/PizzaTime/static/js/Cart.438bd94f.chunk.js.map",
     "FullPizza.d69d1f52.chunk.js.map": "/PizzaTime/static/js/FullPizza.d69d1f52.chunk.js.map",
@@ -18,7 +18,7 @@
     "NotFound.cd1d9ead.chunk.js.map": "/PizzaTime/static/js/NotFound.cd1d9ead.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c06c4be9.css",
+    "static/css/main.cc4ab154.css",
     "static/js/main.18c2ba36.js"
   ]
 }
