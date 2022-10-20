@@ -8,6 +8,7 @@ const FullPizza: React.FC = () => {
     imageUrl: string;
     title: string;
     price: string;
+    about: string;
   }>();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -42,13 +43,11 @@ const FullPizza: React.FC = () => {
         <div className="full-pizza__text">
           <h2 className="full-pizza__title">{pizza.title}</h2>
           <h4 className="full-pizza__price">{pizza.price} ₽</h4>
-          <h4 className="full-pizza__about">Состав:{}</h4>
+          <h4 className="full-pizza__about">{pizza.about}</h4>
         </div>
         <div className="cart__bottom-buttons"></div>
       </div>
-      <Link
-        to="/PizzaTime"
-        className="button button--outline button--add go-back-btn">
+      <Link to="/PizzaTime" className="button button--black">
         <svg
           width="8"
           height="14"
@@ -62,7 +61,6 @@ const FullPizza: React.FC = () => {
             strokeLinecap="round"
             strokeLinejoin="round"></path>
         </svg>
-
         <span>Вернуться назад</span>
       </Link>
     </div>

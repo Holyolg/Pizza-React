@@ -98,7 +98,7 @@ const Home: React.FC = () => {
     isSearchs.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const skeletons = [...new Array(4)].map((_, index) => (
+  const skeletons = [...new Array(8)].map((_, index) => (
     <Skeleton key={index} />
   ));
 

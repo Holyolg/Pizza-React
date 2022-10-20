@@ -16,6 +16,7 @@ type PizzaBlockProps = {
   sizes: any[];
   types: any[];
   raiting: number;
+  about: string;
 };
 
 const PizzaBlock: React.FC<PizzaBlockProps> = ({
@@ -26,6 +27,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   imageUrl,
   sizes,
   types,
+  about,
 }) => {
   const dispath = useDispatch();
   const cartItem = useSelector(selectCartItemById(id));
@@ -43,6 +45,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
       type: typeNames[activeType],
       sizes: sizes[activeSize],
       count: 0, // фиксить
+      about,
     };
     dispath(addItems(item));
   };

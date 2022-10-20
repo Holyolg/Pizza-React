@@ -6,6 +6,7 @@ export type CartItem = {
   type: string;
   sizes: number;
   count: number;
+  about: string;
 };
 
 export interface CartSliceState {

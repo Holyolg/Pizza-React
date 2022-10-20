@@ -62,16 +62,13 @@
 
 
 		h1 {
-			text-align: center;
 			color: #181818;
 			font-size: 28px;
 			letter-spacing: 1%;
 			text-transform: uppercase;
 			font-weight: 800;
 
-			@media (max-width: 1099px) {
-				text-align: left;
-			}
+			@media (max-width: 1099px) {}
 
 			@media (max-width: 410px) {
 				text-align: center;
@@ -79,7 +76,6 @@
 		}
 
 		p {
-			text-align: center;
 			color: #7b7b7b;
 
 			@media (max-width: 1099px) {
