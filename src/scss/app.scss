@@ -8,6 +8,7 @@ body {
 }
 
 .wrapper {
+	position: relative;
 	width: calc(100vw - 100px);
 	height: 100%;
 	background-color: #fff;
@@ -445,7 +446,6 @@ body {
 				font-size: 14px;
 				font-weight: 600;
 				width: 210px;
-				padding: 16px;
 			}
 		}
 

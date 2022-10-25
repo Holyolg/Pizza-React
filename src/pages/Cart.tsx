@@ -1,11 +1,15 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
 import CartEmpty from "../components/CartEmpty";
 import { selectCart } from "../redux/cart/selectors";
 import { clearItems } from "../redux/cart/slice";
+import { Modal } from "../components/Modal/Modal";
 
 const Cart: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+
   const dispath = useDispatch();
   const { totalPrice, items } = useSelector(selectCart);
 
@@ -24,6 +28,7 @@ const Cart: React.FC = () => {
 
   return (
     <div className="container container--cart">
+      <Modal open={open} setOpen={setOpen} />
       <div className="cart">
         <div className="cart__top">
           <h2 className="content__title">
@@ -124,7 +129,7 @@ const Cart: React.FC = () => {
 
               <span>Вернуться назад</span>
             </Link>
-            <button className="button pay-btn">
+            <button className="button pay-btn" onClick={() => setOpen(true)}>
               <span>Оплатить сейчас</span>
             </button>
           </div>
