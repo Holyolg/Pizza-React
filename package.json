@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://holyolg.github.io/PizzaTime",
+  "homepage": "https://holyolg.github.io/Pizza-React",
   "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
